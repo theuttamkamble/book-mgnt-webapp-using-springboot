@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <title>Hello, world!</title>
+  </head>
+  <body  class="col-lg-8 col-md-8 col-sm-8 container mt-5 mb-5 justify-content-center card">
+    
+    <nav class="navbar navbar-expand-md bg-primary navbar-dark">
+	  <!-- Brand -->
+	  <a class="navbar-brand" href="#">Books Management App</a>
+	
+	  <!-- Toggler/collapsibe Button -->
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <!-- Navbar links -->
+	  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+	    <ul class="navbar-nav">
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/home}">Home</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/addbook}">Add book</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/books}">Show Books</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+    
+    
+    <div class="container mt-5">
+    	<h1>Your Book's</h1>
+	</div>
+	
+	<div class="container mt-5">
+	    <div class="container">
+		  <h2>Available Books.</h2>
+		  <p>All available books are displays here.</p>
+		  <table class="table table-striped table-bordered table-info">
+			<thead class="table-dark">
+			  <tr>
+				<th>Book ID</th>
+				<th>Book Name</th>
+				<th>Author Name</th>
+				<th>Price</th>
+				<th>Quantity</th>
+				<th>Action</th>
+			  </tr>
+			</thead>
+			
+			<tbody>
+			  <tr th:each="book: ${books}">
+				<td th:text="${book.id}">id</td>
+				<td th:text="${book.bookname}">bookname</td>
+				<td th:text="${book.authorname}">authorname</td>
+				<td th:text="${book.price}">price</td>
+				<td th:text="${book.quantity}">quantity</td>
+				<td>
+					<a th:href="@{/book/edit/{id}(id=${book.id})}" 
+					class="btn btn-primary">Edit</a>
+					<a th:href="@{/delete/{id}(id=${book.id})}" 
+					class="btn btn-danger">Delete</a>
+				</td>
+			  </tr>
+			</tbody>
+		  </table>
+		</div>
+    </div>
+    
+    <div class="container mt-5 mb-5">
+    	
+    </div>
+    
+  </body>
+</html>
